@@ -1,4 +1,6 @@
 import Link from 'next/link'
+import Login from './LogIn'
+import Signup from './SignUp'
 import styles from '../styles/Navbar.module.scss'
 
 const Navbar = () => {
@@ -10,8 +12,8 @@ const Navbar = () => {
         </li>
       </ul>
       <div>
-        <button>Login</button>
-        <button>Sign up</button>
+        <Login />
+        <Signup />
       </div>
     </nav>
   )

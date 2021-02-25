@@ -1,9 +1,11 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+import db from '../../../utils/db';
 
-import { tasks } from './_tasks'
-
-console.log(tasks)
 
 export default (req, res) => {
-  res.status(200).json(tasks)
-}
+  const project = req.query;
+
+  db.collection("tasks").where("project", "===", project)
+    .get()
+    .then(tasks => res.status(200).json(tasks))
+    .catch(error => res.status(404).json({"message": error}))
+}    
