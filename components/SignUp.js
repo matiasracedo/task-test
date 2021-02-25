@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import { Modal,  ButtonToolbar, Button } from 'rsuite';
 import swal from 'sweetalert';
-import firebase from 'firebase/app';
+import { firebase } from '../src/firebase';
 import 'firebase/auth';
-import 'firebase/firestore';
 import axios from 'redaxios';
 import 'rsuite/dist/styles/rsuite-default.css';
 
@@ -28,7 +27,6 @@ const Signup = () => {
              const { user } = await firebase.auth().createUserWithEmailAndPassword(email, password);
              if(user) {
                  const result = await axios.post('/api/register', {firstName, lastName, email, id: user.uid});
-                 console.log(result)
                  swal(`Welcome!`, `Your account was successfully created.`, `success`)
                  setInput({
                     firstName: "",

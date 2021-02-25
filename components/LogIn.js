@@ -1,19 +1,25 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Modal,  ButtonToolbar, Button } from 'rsuite';
 import swal from 'sweetalert';
-import firebase from 'firebase/app';
+import { firebase } from '../src/firebase';
 import 'firebase/auth';
 import 'rsuite/dist/styles/rsuite-default.css';
 
 const Login = () => {
-
     const [input, setInput] = useState({
       email:"",
       password:""
     });
     const [show, setShow] = useState(false);
+    const [session, setSession] = useState(false);
     let logged;  
   
+    useEffect(() => {
+      firebase.auth().onAuthStateChanged((user) => {
+        if (user) setSession(user);
+        else setSession(false);
+      });
+    },[session])
     const login = async () => {
       if(input.email && input.password){
           const { user } = await firebase.auth().signInWithEmailAndPassword(input.email, input.password);
@@ -29,7 +35,6 @@ const Login = () => {
     const handleClick = async () => {
         await login();
         if (logged) {
-          console.log(logged)
             setInput({
               email:"",
               password:""
@@ -41,10 +46,20 @@ const Login = () => {
         }
     }
   
+    const logout = () => {
+      firebase.auth().signOut().then(() => {
+        setSession(false)
+        return swal(`Good bye!`, `Come back soon!`, `success`)
+      }).catch((error) => {
+        return swal(`Error`, `Please try again`, `error`)
+      });
+    }
+
     return (
         <div className="modal-container">
         <ButtonToolbar>
-          <Button onClick={() => open()}>LogIn</Button>
+          {session ? <Button onClick={() => logout()}>LogOut</Button> :
+          <Button onClick={() => open()}>LogIn</Button>}
         </ButtonToolbar>
 
         <Modal show={show} onHide={close}>

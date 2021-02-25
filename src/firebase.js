@@ -1,5 +1,4 @@
-import firebase from 'firebase/app';
-import 'firebase/firestore';
+import fb from 'firebase/app';
 
 const firebaseConfig = {
     apiKey: process.env.NEXT_PUBLIC_API_KEY,
@@ -11,6 +10,4 @@ const firebaseConfig = {
     measurementId: process.env.MEASUREMENT_ID
   };
 
-!firebase.apps.length ? firebase.initializeApp(firebaseConfig) : firebase.app()
-
-export const db = firebase.firestore();
+export const firebase = !fb.apps.length ? fb.initializeApp(firebaseConfig) : fb.app()

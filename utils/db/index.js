@@ -1,11 +1,15 @@
 import * as firebaseAdmin from 'firebase-admin';
-import serviceAccount from './serviceAccountKey.json';
+
+
+const project_id = process.env["PROJECT_ID"];
+const GOOGLE_APPLICATION_CREDENTIALS = process.env.GOOGLE_APPLICATION_CREDENTIALS
+
 
 if (!firebaseAdmin.apps.length) {
   try {
     firebaseAdmin.initializeApp({
-      credential: firebaseAdmin.credential.cert(serviceAccount),
-      databaseURL: "task-manager-next.firebaseio.com"
+      credential: firebaseAdmin.credential.cert(GOOGLE_APPLICATION_CREDENTIALS),
+      databaseURL: `https://${project_id}.firebaseio.com`
     });
   } catch (error) {
     console.log('Firebase admin initialization error', error.stack);
