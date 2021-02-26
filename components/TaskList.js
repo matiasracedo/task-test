@@ -16,6 +16,7 @@ const TaskList = ({ title }) => {
             axios.get(`/api/tasks/list?project=${title}`)
             .then(tasks => {
             setItems(tasks.data)})
+            .catch(error => console.log(error))
       },[title, update])
 
       const handleClick = async (task, project) => {

@@ -94,7 +94,7 @@ export default function Projects() {
         </ResponsiveNav>
       </div>
       <div className={styles.taskContainer}>
-        <TaskList title={activeKey} />  
+        {activeKey ? <TaskList title={activeKey} /> : <h2>Por favor selecciona o crea un proyecto</h2>}  
       </div>
       </>
     )
