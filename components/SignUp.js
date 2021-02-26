@@ -37,7 +37,6 @@ const Signup = () => {
                 close();
              }
             } catch (error) {
-                console.log(error)
                 swal(`Error`, `Please try again.`, `error`);
                 
             }

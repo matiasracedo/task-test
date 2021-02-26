@@ -1,3 +1,17 @@
 .projectsNav {
-    display: inline-flex;
+    display: flex;
+    flex-direction: column;
+    height: max-content;
+    ul {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+}
+
+.taskContainer {
+    border: 1px solid #ccc;
+    padding: 2rem;
+    box-shadow: 0 0 0.4rem rgba(#000, 0.25);
+    width: 100%;
 }

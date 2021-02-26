@@ -7,6 +7,7 @@ import { firebase } from '../src/firebase';
 import "firebase/auth";
 import 'rsuite/dist/styles/rsuite-default.css';
 import styles from '../styles/projects.module.scss'
+import TaskList from '../components/TaskList.js';
 
 
 export default function Projects() {
@@ -37,7 +38,6 @@ export default function Projects() {
         setUpdate(!update)
         items?.length === 1 && setActiveKey(items[0].id)
       } catch (err) {
-        console.log(err)
         swal(`Error`, `Please try again.`, `error`);
       }
     }
@@ -55,34 +55,8 @@ export default function Projects() {
     }
 
     return (
+        <>
         <div className={styles.projectsNav}>
-        <ResponsiveNav
-          appearance="tabs"
-          moreText={<Icon icon="more" />}
-          moreProps={{ noCaret: true }}
-          activeKey={activeKey}
-          onSelect={(e) => {
-            console.log(e)
-            setActiveKey(e);
-          }}
-          /* onItemRemove={eventKey => {
-            const nextItems = [...items];
-            nextItems.splice(
-              nextItems.map(item => item.eventKey).indexOf(eventKey),
-              1
-            );
-            setItems(nextItems);
-            setActiveKey(nextItems[0] ? nextItems[0].eventKey : null);
-          }} */
-        >
-          {items?.map((item, i) => (
-            <ResponsiveNav.Item key={i} eventKey={item.id}>
-              {item.name}
-              <button onClick={() => {handleDelete(item.id)}}>X</button>
-            </ResponsiveNav.Item>
-          ))}
-        </ResponsiveNav>
-        <hr />
         <Input style={{ width: 250 }} value={input} onChange={value => setInput(value)} placeholder="Project name" />
         <Button
           appearance="primary"
@@ -101,6 +75,27 @@ export default function Projects() {
         >
           New Project
         </Button>
+        <ResponsiveNav
+          className={styles.responsiveNav}
+          appearance="tabs"
+          moreText={<Icon icon="more" />}
+          moreProps={{ noCaret: true }}
+          activeKey={activeKey}
+          onSelect={(e) => {
+            setActiveKey(e);
+          }}
+        >
+          {items?.map((item, i) => (
+            <ResponsiveNav.Item key={i} eventKey={item.id}>
+              {item.name}
+              <button onClick={() => {handleDelete(item.id)}}>X</button>
+            </ResponsiveNav.Item>
+          ))}
+        </ResponsiveNav>
       </div>
+      <div className={styles.taskContainer}>
+        <TaskList title={activeKey} />  
+      </div>
+      </>
     )
 }

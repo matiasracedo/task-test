@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router'
 import { Modal,  ButtonToolbar, Button } from 'rsuite';
 import swal from 'sweetalert';
 import { firebase } from '../src/firebase';
@@ -13,6 +14,7 @@ const Login = () => {
     const [show, setShow] = useState(false);
     const [session, setSession] = useState(false);
     let logged;  
+    const router = useRouter();
   
     useEffect(() => {
       firebase.auth().onAuthStateChanged((user) => {
@@ -49,6 +51,7 @@ const Login = () => {
     const logout = () => {
       firebase.auth().signOut().then(() => {
         setSession(false)
+        router.push('/');
         return swal(`Good bye!`, `Come back soon!`, `success`)
       }).catch((error) => {
         return swal(`Error`, `Please try again`, `error`)

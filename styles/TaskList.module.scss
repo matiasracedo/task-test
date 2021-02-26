@@ -1,0 +1,16 @@
+.tasklist {
+    display: grid;
+    text-align: center;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: space-between;
+    width: 100%;
+    h4 {
+        text-align: center;
+    }
+    h6 {
+        text-transform: uppercase;
+    }
+    ul {
+        font-size: 14px;
+    }
+}
