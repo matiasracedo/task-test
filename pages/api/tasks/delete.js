@@ -1,9 +1,13 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+import db from '../../../utils/db';
 
-import { tasks } from './_tasks'
+export default async (req, res) => {
+    const { id } = req.query;
 
-console.log(tasks)
-
-export default (req, res) => {
-  res.status(200).json(tasks)
-}
+    try {
+        await db.collection("tasks").doc(id).delete()
+        res.status(200).json({"message": "Task deleted successfully."})
+    } catch (error) {
+        res.status(404).json({"message": error})
+    }
+      
+}  

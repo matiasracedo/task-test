@@ -1,9 +1,13 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+import db from '../../../utils/db';
 
-import { tasks } from './_tasks'
 
-console.log(tasks)
-
-export default (req, res) => {
-  res.status(200).json(tasks)
-}
+export default async (req, res) => {
+    const { id, status } = req.query;
+    try {
+      const taskRef = db.collection("tasks").doc(id)
+      const updated = await taskRef.update({status: status})
+      res.status(200).json({ updated });
+    } catch (error) {
+      res.status(400).json({ error });
+    }
+  };
