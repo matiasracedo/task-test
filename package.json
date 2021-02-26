@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@rsuite/responsive-nav": "^1.0.0",
     "firebase": "^8.2.9",
     "firebase-admin": "^9.5.0",
     "next": "10.0.7",
