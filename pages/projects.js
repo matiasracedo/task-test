@@ -1,6 +1,4 @@
 import { useState, useEffect } from 'react';
-import ResponsiveNav from '@rsuite/responsive-nav';
-import { Icon, Button, Input } from 'rsuite';
 import axios from 'redaxios';
 import swal from 'sweetalert';
 import { firebase } from '../src/firebase';
@@ -59,18 +57,46 @@ export default function Projects() {
     }
 
     return (
-        <>
+      <div>
+			<div className={styles.dashboard}>
+				<div className={styles.dashboard__left}>
+						<section className={!activeKey ? styles.active1 : null}>
+            <input style={{ width: 150 }} value={input} onChange={e => setInput(e.target.value)} placeholder="Project name" />
+							<button
+                style={{ width: 150 }}
+                id='addbtn'
+                onClick={() => {
+                  handleClick(input, session);
+                  setInput("");
+                }}
+              >
+               New Project
+            </button>
+					  </section>
+          
+            {items?.map((item, i) => (
+              <div key={i} onClick={() => setActiveKey(item.id)} className={activeKey === item.id ? styles.active : styles.inactive}>
+							<p>{item.name}</p>
+              <button className={styles.deletebtn} onClick={() => {handleDelete(item.id)}}>✘</button>
+						</div>
+            ))}
+						
+        </div>      
+					
+				<section className={styles.taskContainer}>
+				{activeKey ? <TaskList title={activeKey} /> : <h2>Please create or select a project</h2>}
+				</section>
+			</div>
+</div>
+    )
+}
+
+
+
+{/* <>
         <div className={styles.projectsNav}>
         <Input style={{ width: 250 }} value={input} onChange={value => setInput(value)} placeholder="Project name" />
-        <Button
-          appearance="primary"
-          onClick={() => {
-            handleClick(input, session);
-            setInput("");
-          }}
-        >
-          New Project
-        </Button>
+        
         <ResponsiveNav
           className={styles.responsiveNav}
           appearance="tabs"
@@ -90,9 +116,6 @@ export default function Projects() {
         </ResponsiveNav>
       </div>
       <div className={styles.taskContainer}>
-        {activeKey ? <TaskList title={activeKey} /> : <h2>Please create or select a project</h2>}  
+          
       </div>
-      </>
-    )
-}
-
+      </> */}
