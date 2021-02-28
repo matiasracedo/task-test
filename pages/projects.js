@@ -33,12 +33,16 @@ export default function Projects() {
 
 
     const handleClick = async (name, session) => {
-      try {
-        await axios.post('/api/projects/add', { name, user: session.uid })
-        setUpdate(!update)
-        items?.length === 1 && setActiveKey(items[0].id)
-      } catch (err) {
-        swal(`Error`, `Please try again.`, `error`);
+      if (input) {
+        try {
+          await axios.post('/api/projects/add', { name, user: session.uid })
+          items?.length === 1 && setActiveKey(items[0].id)
+          setUpdate(!update)
+        } catch (err) {
+          swal(`Error`, `Please try again.`, `error`);
+        }
+      } else {
+        swal(`Error`, `Please enter a project name.`, `error`);
       }
     }
 
@@ -48,7 +52,7 @@ export default function Projects() {
         let newItems = items.filter(item => item.id !== id)
         setItems(newItems)
         setUpdate(!update)
-        setActiveKey(items[0].id)
+        setActiveKey('')
       } catch(error) {
         swal(`Error`, `Please try again.`, `error`);
       }
@@ -61,14 +65,6 @@ export default function Projects() {
         <Button
           appearance="primary"
           onClick={() => {
-            /* const nextItems = [
-              ...items,
-              {
-                eventKey: items.length,
-                name: `${input}`
-              }
-            ]; */
-            /* setItems(nextItems); */
             handleClick(input, session);
             setInput("");
           }}
@@ -99,3 +95,4 @@ export default function Projects() {
       </>
     )
 }
+

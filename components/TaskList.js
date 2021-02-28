@@ -47,10 +47,11 @@ const TaskList = ({ title }) => {
       }
 
     return (
-        <>
+        <div className={styles.container}>
             <h4>Project: {title.split('_')[1]}</h4>
             <Input style={{ width: 250 }} value={input} onChange={value => setInput(value)} placeholder="Task title" />
             <Button
+                style={{ width: 250 }}
                 appearance="primary"
                 onClick={() => {
                     handleClick(input, title);
@@ -58,13 +59,13 @@ const TaskList = ({ title }) => {
                 }}
             >
                 New Task
-        </Button>
+            </Button>
             <div className={styles.tasklist}>
                 <Task status='pending'handleEdit={handleEdit} handleDelete={handleDelete} tasks={items.filter(item => item.status === 'pending')} />
                 <Task status='in process' handleEdit={handleEdit} handleDelete={handleDelete} tasks={items.filter(item => item.status === 'in process')} />
                 <Task status='completed' handleDelete={handleDelete} tasks={items.filter(item => item.status === 'completed')} />
             </div>
-        </>
+        </div>
     )
 }
 
