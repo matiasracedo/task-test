@@ -14,7 +14,7 @@ const Meta = ({ title, keywords, description }) => {
 }
 
 Meta.defaultProps = {
-  title: 'Task Manager App',
+  title: 'Task Manager',
   keywords: 'task manager, todo app, web develpment, management software',
   description: 'See all projects going on across your team, in one place.',
 }

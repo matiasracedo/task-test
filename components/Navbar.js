@@ -19,6 +19,7 @@ const Navbar = () => {
   return (
     <nav className={styles.nav}>
       <ul>
+      <img src='https://www.freeiconspng.com/uploads/task-manager-icon-14.png' alt='app icon' width='35px' height='35px' />
         <li>
           <Link href='/'>Home</Link>
           {session ? <Link href='/projects'>Projects</Link> : null}
@@ -26,7 +27,7 @@ const Navbar = () => {
       </ul>
       <div>
         <Login />
-        <Signup />
+        {session ? null : <Signup />}
       </div>
     </nav>
   )

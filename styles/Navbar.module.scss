@@ -1,7 +1,7 @@
 .nav {
     height: 50px;
     padding: 10px;
-    background: #000;
+    background: #03051e;
     color: #fff;
     display: flex;
     align-items: center;
@@ -14,7 +14,11 @@
         list-style: none;
         
         li a {
-            margin: 5px 15px;
+            font-size: 1.2rem;
+            margin: 0 1.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            
         }
         
     }
@@ -30,8 +34,8 @@
             border-radius: 10px;
             transition: color 0.15s ease, border-color 0.15s ease;
             &:hover:active {
-                color: #0070f3;
-                border-color: #0070f3;
+                color: #6e9cff;
+                border-color: #6e9cff;
               }
         }
     }
