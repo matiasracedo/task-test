@@ -5,6 +5,7 @@ import swal from 'sweetalert';
 import { firebase } from '../src/firebase';
 import 'firebase/auth';
 import 'rsuite/dist/styles/rsuite-default.css';
+import styles from '../styles/Modals.module.scss';
 
 const Login = () => {
     const [input, setInput] = useState({
@@ -61,15 +62,15 @@ const Login = () => {
     return (
         <div className="modal-container">
         <ButtonToolbar>
-          {session ? <Button onClick={() => logout()}>LogOut</Button> :
-          <Button onClick={() => open()}>LogIn</Button>}
+          {session ? <Button className={styles.logoutbtn} onClick={() => logout()}>LogOut</Button> :
+          <Button className={styles.loginbtn} onClick={() => open()}>LogIn</Button>}
         </ButtonToolbar>
 
         <Modal show={show} onHide={close}>
           <Modal.Header>
             <Modal.Title>Task Manager LogIn</Modal.Title>
           </Modal.Header>
-          <Modal.Body>
+          <Modal.Body className={styles.modalform}>
             <label>Email</label>  
             <input
                 type="text"

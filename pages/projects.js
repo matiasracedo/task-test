@@ -61,9 +61,10 @@ export default function Projects() {
 			<div className={styles.dashboard}>
 				<div className={styles.dashboard__left}>
 						<section className={!activeKey ? styles.active1 : null}>
-            <input style={{ width: 150 }} value={input} onChange={e => setInput(e.target.value)} placeholder="Project name" />
+            <input style={{ width: 160 }} value={input} onChange={e => setInput(e.target.value)} placeholder="Project name" />
 							<button
-                style={{ width: 150 }}
+                className={styles.addbtn}
+                style={{ width: 160 }}
                 id='addbtn'
                 onClick={() => {
                   handleClick(input, session);
@@ -90,32 +91,3 @@ export default function Projects() {
 </div>
     )
 }
-
-
-
-{/* <>
-        <div className={styles.projectsNav}>
-        <Input style={{ width: 250 }} value={input} onChange={value => setInput(value)} placeholder="Project name" />
-        
-        <ResponsiveNav
-          className={styles.responsiveNav}
-          appearance="tabs"
-          moreText={<Icon icon="more" />}
-          moreProps={{ noCaret: true }}
-          activeKey={activeKey}
-          onSelect={(e) => {
-            setActiveKey(e);
-          }}
-        >
-          {items?.map((item, i) => (
-            <ResponsiveNav.Item key={i} eventKey={item.id}>
-              {item.name}
-              <button onClick={() => {handleDelete(item.id)}}>X</button>
-            </ResponsiveNav.Item>
-          ))}
-        </ResponsiveNav>
-      </div>
-      <div className={styles.taskContainer}>
-          
-      </div>
-      </> */}

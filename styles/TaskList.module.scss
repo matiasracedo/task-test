@@ -19,3 +19,13 @@
         font-size: 14px;
     }
 }
+.taskbtn {
+    background-color: #2a3158;
+    padding: 0.3rem;
+    color: #ccc;
+    border-radius: 0.3rem;
+    &:hover {
+        background-color: hsla(243, 15%, 54%, 0.60);
+        color: #2a3158;
+    }
+}

@@ -6,11 +6,21 @@
     }
 }
 .edit {
-    background-color: white;
-    color: black;
-    border: 1px solid grey;
+    background-color: transparent;
+    font-weight: 600;
+    color: #63a583;
+    &:hover {
+        background-color: #63a583;
+        color: #ccc;
+        border-radius: 0.3rem;
+    }
 }
 .delete {
-    background-color: black;
-    color: white;
+    background-color: transparent;
+    color: #fe464e;
+    &:hover {
+        background-color: #fe464e;
+        color: #ccc;
+        border-radius: 0.3rem;
+    }
 }

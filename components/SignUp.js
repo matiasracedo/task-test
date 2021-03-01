@@ -5,6 +5,7 @@ import { firebase } from '../src/firebase';
 import 'firebase/auth';
 import axios from 'redaxios';
 import 'rsuite/dist/styles/rsuite-default.css';
+import styles from '../styles/Modals.module.scss';
 
 const Signup = () => {
 
@@ -63,7 +64,7 @@ const Signup = () => {
           <Modal.Header>
             <Modal.Title>Task Manager Sign Up Form</Modal.Title>
           </Modal.Header>
-          <Modal.Body>
+          <Modal.Body className={styles.modalform}>
             <label>First name</label>  
             <input
                 type="text"

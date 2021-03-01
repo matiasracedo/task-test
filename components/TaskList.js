@@ -50,16 +50,16 @@ const TaskList = ({ title }) => {
         <div className={styles.container}>
             <h4>Project: {title.split('_')[1]}</h4>
             <Input style={{ width: 250 }} value={input} onChange={value => setInput(value)} placeholder="Task title" />
-            <Button
+            <button
+                className={styles.taskbtn}
                 style={{ width: 250 }}
-                appearance="primary"
                 onClick={() => {
                     handleClick(input, title);
                     setInput("");
                 }}
             >
                 New Task
-            </Button>
+            </button>
             <div className={styles.tasklist}>
                 <Task status='pending'handleEdit={handleEdit} handleDelete={handleDelete} tasks={items.filter(item => item.status === 'pending')} />
                 <Task status='in process' handleEdit={handleEdit} handleDelete={handleDelete} tasks={items.filter(item => item.status === 'in process')} />
